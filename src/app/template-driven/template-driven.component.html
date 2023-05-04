@@ -1,0 +1,65 @@
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" formControlName="nom">
+      <div *ngIf="formulaire.controls['nom'].invalid && (formulaire.controls['nom'].dirty || formulaire.controls['nom'].touched)">
+        <div *ngIf="formulaire.controls['nom'].errors">
+          Le nom est obligatoire.
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="email">Email</label>
+      <input type="text" id="email" formControlName="email">
+      <div *ngIf="formulaire.controls['email'].invalid && (formulaire.controls['email'].dirty || formulaire.controls['email'].touched)">
+        <div *ngIf="formulaire.controls['email'].errors">
+          L'email est obligatoire.
+        </div>
+        <div *ngIf="formulaire.controls['email'].errors">
+          L'email n'a pas le format requis.
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="typeCarte">Type de carte</label>
+      <select id="typeCarte" formControlName="typeCarte">
+        <option value="">Sélectionner un type</option>
+        <option value="visa">Visa</option>
+        <option value="mastercard">Mastercard</option>
+        <option value="amex">American Express</option>
+      </select>
+      <div *ngIf="formulaire.controls['typeCarte'].invalid && (formulaire.controls['typeCarte'].dirty || formulaire.controls['typeCarte'].touched)">
+        Le type de carte est obligatoire.
+      </div>
+    </div>
+    
+    <div>
+      <label for="numCarte">Numéro de carte</label>
+      <input type="text" id="numCarte" formControlName="numCarte">
+      <div *ngIf="formulaire.controls['numCarte'].invalid && (formulaire.controls['numCarte'].dirty || formulaire.controls['numCarte'].touched)">
+        <div *ngIf="formulaire.controls['numCarte'].errors">
+          Le numéro de carte est obligatoire.
+        </div>
+        <div *ngIf="formulaire.controls['numCarte'].errors">
+          Le numéro de carte doit contenir 16 chiffres.
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="dateExp">Date d'expiration</label>
+      <input type="text" id="dateExp" formControlName="dateExp">
+      <div *ngIf="formulaire.controls['dateExp'].invalid && (formulaire.controls['dateExp'].dirty || formulaire.controls['dateExp'].touched)">
+        La date d'expiration est obligatoire.
+      </div>
+    </div>
+    
+    <div>
+      <label for="code">Code</label>
+      <input type="password" id="code" formControlName="code" [hidden]="formulaire.valid">
+    </div>
+    
+    <button type="submit" [disabled]="formulaire.invalid">Ajouter</button>
+  </form>
